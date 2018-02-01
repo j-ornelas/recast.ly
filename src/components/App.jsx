@@ -7,18 +7,46 @@ class App extends React.Component {
       nowPlaying: props.videos[0]
       
     };
+    
   }
 
-  
+  processSearch(input) {
+    console.log(input);
+    window.searchYouTube(input);
+  }
+
+  updateState(data) {
+    console.log(data);
+    this.setState({data: data});
+  }
+ 
   videoListEntryOnClick(clicked) {
-    //need to get clicked to change state of now playing.
-    //aka, this.state = {nowPlaying:clicked}
-    console.log(clicked);
-    console.log('clicked');
-    console.log(this);
-    
     this.setState({nowPlaying: clicked});
   }
+
+
+
+  // searchYT (query) {
+
+  //   $.ajax({
+  //     url: 'https://www.googleapis.com/youtube/v3/search',
+  //     type: 'GET',
+  //     data: $.extend({
+  //       key: 'AIzaSyCZjYAHiCyd95PEhnKty730V0h7QsQ3grw',
+  //       q: query,
+  //       part: 'snippet'
+  //     }, 
+  //     {maxResults: 5, pageToken: $('#pageToken').val()}),
+
+  //     contentType: 'application/json',
+  //     success: function(data) {
+  //       this.setState({data: data.items});
+  //     },
+  //     error: function(data) {
+  //       console.log('FAILED to load data!');
+  //     }
+  //   });
+  // }
 
   render() {
     return (
@@ -26,7 +54,7 @@ class App extends React.Component {
         <nav className="navbar">
          
           <div className="col-md-6 offset-md-3">
-            <div><Search /></div>
+            <div><Search onClick={this.processSearch.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
