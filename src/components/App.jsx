@@ -3,11 +3,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.videos
+      data: props.videos,
+      nowPlaying: props.videos[0]
+      
     };
   }
 
   
+  videoListEntryOnClick(clicked) {
+    //need to get clicked to change state of now playing.
+    //aka, this.state = {nowPlaying:clicked}
+    console.log(clicked);
+    console.log('clicked');
+    console.log(this);
+    
+    this.setState({nowPlaying: clicked});
+  }
 
   render() {
     return (
@@ -20,10 +31,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer /></div>
+            <div><VideoPlayer nowPlaying={this.state.nowPlaying} /></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={this.props.videos} /></div>
+            <div><VideoList videos={this.props.videos} onClick={this.videoListEntryOnClick.bind(this)}/></div>
           </div>
         </div>
       </div>
