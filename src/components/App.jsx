@@ -9,15 +9,27 @@ class App extends React.Component {
     };
     
   }
+  // processSearch(input) {
+  //   console.log(input);
+  //   this.setState({
+    
+  //     data: window.searchYouTube(input)
 
-  processSearch(input) {
+  //   });
+    
+  //   // this.setState({frog: input});
+  // 
+
+  getYouTubeVideos(input) {
+      
     console.log(input);
-    window.searchYouTube(input);
-  }
 
-  updateState(data) {
-    console.log(data);
-    this.setState({data: data});
+    window.searchYouTube(input, (data) => 
+      this.setState({
+        frog: 123,
+        data: data
+      })
+    );
   }
  
   videoListEntryOnClick(clicked) {
@@ -54,7 +66,7 @@ class App extends React.Component {
         <nav className="navbar">
          
           <div className="col-md-6 offset-md-3">
-            <div><Search onClick={this.processSearch.bind(this)}/></div>
+            <div><Search onClick={this.getYouTubeVideos.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
@@ -62,7 +74,7 @@ class App extends React.Component {
             <div><VideoPlayer nowPlaying={this.state.nowPlaying} /></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={this.props.videos} onClick={this.videoListEntryOnClick.bind(this)}/></div>
+            <div><VideoList videos={this.state.data} onClick={this.videoListEntryOnClick.bind(this)}/></div>
           </div>
         </div>
       </div>

@@ -12,8 +12,9 @@ var searchYouTube = (query, callback) => {
 
     contentType: 'application/json',
     success: function(data) {
+      console.log('returned from ajax: ');
       console.log(data.items);
-      return data.items;
+      callback(data.items);
     },
     error: function(data) {
       console.log('FAILED to load data!');
